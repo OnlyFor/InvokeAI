@@ -2,6 +2,7 @@ import type { PayloadAction, UnknownAction } from '@reduxjs/toolkit';
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import type { PersistConfig, RootState } from 'app/store/store';
 import { moveBackward, moveForward, moveToBack, moveToFront } from 'common/util/arrayUtils';
+import { controlAdapterRemoved } from 'features/controlAdapters/store/controlAdaptersSlice';
 import type { ParameterAutoNegative } from 'features/parameters/types/parameterSchemas';
 import type { IRect, Vector2d } from 'konva/lib/types';
 import { isEqual } from 'lodash-es';
@@ -32,15 +33,6 @@ type VectorMaskRect = {
   height: number;
 };
 
-type TextPrompt = {
-  positive: string;
-  negative: string;
-};
-
-type ImagePrompt = {
-  // TODO
-};
-
 type LayerBase = {
   id: string;
   x: number;
@@ -51,8 +43,9 @@ type LayerBase = {
 };
 
 type MaskLayerBase = LayerBase & {
-  textPrompt: TextPrompt | null; // Up to one text prompt per mask
-  imagePrompts: ImagePrompt[]; // Any number of image prompts
+  positivePrompt: string | null;
+  negativePrompt: string | null; // Up to one text prompt per mask
+  ipAdapterId: string | null; // Any number of image prompts
   previewColor: RgbaColor;
   autoNegative: ParameterAutoNegative;
   needsPixelBbox: boolean; // Needs the slower pixel-based bbox calculation - set to true when an there is an eraser object
@@ -111,11 +104,9 @@ export const regionalPromptsSlice = createSlice({
             y: 0,
             autoNegative: 'off',
             needsPixelBbox: false,
-            textPrompt: {
-              positive: '',
-              negative: '',
-            },
-            imagePrompts: [],
+            positivePrompt: null,
+            negativePrompt: null,
+            ipAdapterId: null,
           };
           state.layers.push(layer);
           state.selectedLayerId = layer.id;
@@ -191,19 +182,28 @@ export const regionalPromptsSlice = createSlice({
     //#endregion
 
     //#region Mask Layers
-    maskLayerPositivePromptChanged: (state, action: PayloadAction<{ layerId: string; prompt: string }>) => {
+    maskLayerPositivePromptChanged: (state, action: PayloadAction<{ layerId: string; prompt: string | null }>) => {
       const { layerId, prompt } = action.payload;
       const layer = state.layers.find((l) => l.id === layerId);
-      if (layer && layer.textPrompt) {
-        layer.textPrompt.positive = prompt;
+      if (layer) {
+        layer.positivePrompt = prompt;
       }
     },
-    maskLayerNegativePromptChanged: (state, action: PayloadAction<{ layerId: string; prompt: string }>) => {
+    maskLayerNegativePromptChanged: (state, action: PayloadAction<{ layerId: string; prompt: string | null }>) => {
       const { layerId, prompt } = action.payload;
       const layer = state.layers.find((l) => l.id === layerId);
-      if (layer && layer.textPrompt) {
-        layer.textPrompt.negative = prompt;
+      if (layer) {
+        layer.negativePrompt = prompt;
       }
+    },
+    maskLayerIPAdapterAdded: {
+      reducer: (state, action: PayloadAction<string, string, { uuid: string }>) => {
+        const layer = state.layers.find((l) => l.id === action.payload);
+        if (layer) {
+          layer.ipAdapterId = action.meta.uuid;
+        }
+      },
+      prepare: (payload: string) => ({ payload, meta: { uuid: uuidv4() } }),
     },
     maskLayerPreviewColorChanged: (state, action: PayloadAction<{ layerId: string; color: RgbaColor }>) => {
       const { layerId, color } = action.payload;
@@ -321,6 +321,15 @@ export const regionalPromptsSlice = createSlice({
     },
     //#endregion
   },
+  extraReducers(builder) {
+    builder.addCase(controlAdapterRemoved, (state, action) => {
+      for (const layer of state.layers) {
+        if (layer.ipAdapterId === action.payload.id) {
+          layer.ipAdapterId = null;
+        }
+      }
+    });
+  },
 });
 
 /**
@@ -369,13 +378,14 @@ export const {
   layerVisibilityToggled,
   allLayersDeleted,
   // Mask layer actions
+  maskLayerLineAdded,
+  maskLayerPointsAdded,
+  maskLayerRectAdded,
+  maskLayerNegativePromptChanged,
+  maskLayerPositivePromptChanged,
+  maskLayerIPAdapterAdded,
   maskLayerAutoNegativeChanged,
   maskLayerPreviewColorChanged,
-  maskLayerLineAdded,
-  maskLayerNegativePromptChanged,
-  maskLayerPointsAdded,
-  maskLayerPositivePromptChanged,
-  maskLayerRectAdded,
   // General actions
   isEnabledChanged,
   brushSizeChanged,

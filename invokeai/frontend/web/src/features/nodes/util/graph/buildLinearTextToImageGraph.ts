@@ -2,6 +2,7 @@ import { logger } from 'app/logging/logger';
 import type { RootState } from 'app/store/store';
 import { fetchModelConfigWithTypeGuard } from 'features/metadata/util/modelFetchingHelpers';
 import { addRegionalPromptsToGraph } from 'features/nodes/util/graph/addRegionalPromptsToGraph';
+import { GraphBuilder } from 'features/nodes/util/graph/GraphBuilder';
 import { getBoardField, getIsIntermediate } from 'features/nodes/util/graph/graphBuilderUtils';
 import { isNonRefinerMainModelConfig, type NonNullableGraph } from 'services/api/types';
 
@@ -69,6 +70,76 @@ export const buildLinearTextToImageGraph = async (state: RootState): Promise<Non
    */
 
   // copy-pasted graph from node editor, filled in with state values & friendly node ids
+
+  const builder = new GraphBuilder(TEXT_TO_IMAGE_GRAPH, 'sd-1');
+
+  builder.addNode({
+    type: 'main_model_loader',
+    id: MAIN_MODEL_LOADER,
+    model,
+  });
+  builder.addNode({
+    type: 'clip_skip',
+    id: CLIP_SKIP,
+    skipped_layers: clipSkip,
+  });
+  builder.addNode({
+    type: 'compel',
+    id: POSITIVE_CONDITIONING,
+    prompt: positivePrompt,
+  });
+  builder.addNode({
+    type: 'compel',
+    id: NEGATIVE_CONDITIONING,
+    prompt: negativePrompt,
+  });
+  builder.addNode({
+    type: 'noise',
+    id: NOISE,
+    seed,
+    width,
+    height,
+    use_cpu,
+  });
+  builder.addNode({
+    type: 'denoise_latents',
+    id: DENOISE_LATENTS,
+    cfg_scale,
+    cfg_rescale_multiplier,
+    scheduler,
+    steps,
+    denoising_start: 0,
+    denoising_end: 1,
+  });
+  builder.addNode({
+    type: 'l2i',
+    id: LATENTS_TO_IMAGE,
+    fp32,
+    is_intermediate: getIsIntermediate(state),
+    board: getBoardField(state),
+    use_cache: false,
+  });
+  builder.addEdge<'main_model_loader', 'denoise_latents'>(MAIN_MODEL_LOADER, 'unet', DENOISE_LATENTS, 'unet');
+  builder.addEdge<'main_model_loader', 'clip_skip'>(MAIN_MODEL_LOADER, 'clip', CLIP_SKIP, 'clip');
+  // Connect CLIP Skip to Conditioning
+  builder.addEdge<'clip_skip', 'compel'>(CLIP_SKIP, 'clip', POSITIVE_CONDITIONING, 'clip');
+  builder.addEdge<'clip_skip', 'compel'>(CLIP_SKIP, 'clip', NEGATIVE_CONDITIONING, 'clip');
+  // Connect everything to Denoise Latents
+  builder.addEdge<'compel', 'denoise_latents'>(
+    POSITIVE_CONDITIONING,
+    'conditioning',
+    DENOISE_LATENTS,
+    'positive_conditioning'
+  );
+  builder.addEdge<'compel', 'denoise_latents'>(
+    NEGATIVE_CONDITIONING,
+    'conditioning',
+    DENOISE_LATENTS,
+    'negative_conditioning'
+  );
+  builder.addEdge<'noise', 'denoise_latents'>(NOISE, 'noise', DENOISE_LATENTS, 'noise');
+  // Decode Denoised Latents To Image
+  builder.addEdge<'denoise_latents', 'l2i'>(DENOISE_LATENTS, 'height', LATENTS_TO_IMAGE, 'latents');
 
   const graph: NonNullableGraph = {
     id: TEXT_TO_IMAGE_GRAPH,

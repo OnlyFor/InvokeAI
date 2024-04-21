@@ -4,19 +4,32 @@ import { isVectorMaskLayer, selectRegionalPromptsSlice } from 'features/regional
 import { useMemo } from 'react';
 import { assert } from 'tsafe';
 
-export const useMaskLayerTextPrompt = (layerId: string) => {
+export const useLayerPositivePrompt = (layerId: string) => {
   const selectLayer = useMemo(
     () =>
       createSelector(selectRegionalPromptsSlice, (regionalPrompts) => {
         const layer = regionalPrompts.present.layers.find((l) => l.id === layerId);
         assert(isVectorMaskLayer(layer), `Layer ${layerId} not found or not an RP layer`);
-        assert(layer.textPrompt !== null, `Layer ${layerId} does not have a text prompt`);
-        return layer.textPrompt;
+        return layer.positivePrompt;
       }),
     [layerId]
   );
-  const textPrompt = useAppSelector(selectLayer);
-  return textPrompt;
+  const prompt = useAppSelector(selectLayer);
+  return prompt;
+};
+
+export const useLayerNegativePrompt = (layerId: string) => {
+  const selectLayer = useMemo(
+    () =>
+      createSelector(selectRegionalPromptsSlice, (regionalPrompts) => {
+        const layer = regionalPrompts.present.layers.find((l) => l.id === layerId);
+        assert(isVectorMaskLayer(layer), `Layer ${layerId} not found or not an RP layer`);
+        return layer.negativePrompt;
+      }),
+    [layerId]
+  );
+  const prompt = useAppSelector(selectLayer);
+  return prompt;
 };
 
 export const useLayerIsVisible = (layerId: string) => {

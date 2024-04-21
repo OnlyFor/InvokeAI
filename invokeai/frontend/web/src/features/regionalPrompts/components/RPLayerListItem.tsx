@@ -1,6 +1,7 @@
 import { Flex, Spacer } from '@invoke-ai/ui-library';
 import { useAppDispatch, useAppSelector } from 'app/store/storeHooks';
 import { rgbColorToString } from 'features/canvas/util/colorToString';
+import ControlAdapterConfig from 'features/controlAdapters/components/ControlAdapterConfig';
 import { RPLayerActionsButtonGroup } from 'features/regionalPrompts/components/RPLayerActionsButtonGroup';
 import { RPLayerAutoNegativeCombobox } from 'features/regionalPrompts/components/RPLayerAutoNegativeCombobox';
 import { RPLayerColorPicker } from 'features/regionalPrompts/components/RPLayerColorPicker';
@@ -27,7 +28,12 @@ export const RPLayerListItem = memo(({ layerId }: Props) => {
   const hasTextPrompt = useAppSelector((s) => {
     const layer = s.regionalPrompts.present.layers.find((l) => l.id === layerId);
     assert(isVectorMaskLayer(layer), `Layer ${layerId} not found or not an RP layer`);
-    return layer.textPrompt !== null;
+    return Boolean(layer.positivePrompt || layer.negativePrompt);
+  });
+  const ipAdapterId = useAppSelector((s) => {
+    const layer = s.regionalPrompts.present.layers.find((l) => l.id === layerId);
+    assert(isVectorMaskLayer(layer), `Layer ${layerId} not found or not an RP layer`);
+    return layer.ipAdapterId;
   });
   const onClickCapture = useCallback(() => {
     // Must be capture so that the layer is selected before deleting/resetting/etc
@@ -57,6 +63,7 @@ export const RPLayerListItem = memo(({ layerId }: Props) => {
         </Flex>
         {hasTextPrompt && <RPLayerPositivePrompt layerId={layerId} />}
         {hasTextPrompt && <RPLayerNegativePrompt layerId={layerId} />}
+        {ipAdapterId !== null && <ControlAdapterConfig id={ipAdapterId} number={1} />}
       </Flex>
     </Flex>
   );

@@ -4,7 +4,7 @@ import { PromptOverlayButtonWrapper } from 'features/parameters/components/Promp
 import { AddPromptTriggerButton } from 'features/prompt/AddPromptTriggerButton';
 import { PromptPopover } from 'features/prompt/PromptPopover';
 import { usePrompt } from 'features/prompt/usePrompt';
-import { useMaskLayerTextPrompt } from 'features/regionalPrompts/hooks/layerStateHooks';
+import { useLayerPositivePrompt } from 'features/regionalPrompts/hooks/layerStateHooks';
 import { maskLayerPositivePromptChanged } from 'features/regionalPrompts/store/regionalPromptsSlice';
 import { memo, useCallback, useRef } from 'react';
 import type { HotkeyCallback } from 'react-hotkeys-hook';
@@ -16,7 +16,7 @@ type Props = {
 };
 
 export const RPLayerPositivePrompt = memo((props: Props) => {
-  const textPrompt = useMaskLayerTextPrompt(props.layerId);
+  const prompt = useLayerPositivePrompt(props.layerId);
   const dispatch = useAppDispatch();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { t } = useTranslation();
@@ -27,7 +27,7 @@ export const RPLayerPositivePrompt = memo((props: Props) => {
     [dispatch, props.layerId]
   );
   const { onChange, isOpen, onClose, onOpen, onSelect, onKeyDown, onFocus } = usePrompt({
-    prompt: textPrompt.positive,
+    prompt,
     textareaRef,
     onChange: _onChange,
   });
@@ -48,7 +48,7 @@ export const RPLayerPositivePrompt = memo((props: Props) => {
           id="prompt"
           name="prompt"
           ref={textareaRef}
-          value={textPrompt.positive}
+          value={prompt}
           placeholder={t('parameters.positivePromptPlaceholder')}
           onChange={onChange}
           onKeyDown={onKeyDown}

@@ -52,7 +52,7 @@ export const getRegionalPromptLayerBlobs = async (
       openBase64ImageInTab([
         {
           base64,
-          caption: `${reduxLayer.id}: ${reduxLayer.textPrompt?.positive} / ${reduxLayer.textPrompt?.negative}`,
+          caption: `${reduxLayer.id}: ${reduxLayer.positivePrompt} / ${reduxLayer.negativePrompt}`,
         },
       ]);
     }

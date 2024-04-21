@@ -1,9 +1,13 @@
 import { ButtonGroup, IconButton } from '@invoke-ai/ui-library';
 import { useAppDispatch } from 'app/store/storeHooks';
-import { layerDeleted, layerReset } from 'features/regionalPrompts/store/regionalPromptsSlice';
+import {
+  layerDeleted,
+  layerReset,
+  maskLayerIPAdapterAdded,
+} from 'features/regionalPrompts/store/regionalPromptsSlice';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PiArrowCounterClockwiseBold, PiTrashSimpleBold } from 'react-icons/pi';
+import { PiArrowCounterClockwiseBold, PiPlusBold, PiTrashSimpleBold } from 'react-icons/pi';
 
 type Props = { layerId: string };
 
@@ -15,6 +19,9 @@ export const RPLayerActionsButtonGroup = memo(({ layerId }: Props) => {
   }, [dispatch, layerId]);
   const resetLayer = useCallback(() => {
     dispatch(layerReset(layerId));
+  }, [dispatch, layerId]);
+  const addIPAdapter = useCallback(() => {
+    dispatch(maskLayerIPAdapterAdded(layerId));
   }, [dispatch, layerId]);
   return (
     <ButtonGroup isAttached={false}>
@@ -32,6 +39,14 @@ export const RPLayerActionsButtonGroup = memo(({ layerId }: Props) => {
         tooltip={t('common.delete')}
         icon={<PiTrashSimpleBold />}
         onClick={deleteLayer}
+      />
+      <IconButton
+        size="sm"
+        colorScheme="error"
+        aria-label={t('common.delete')}
+        tooltip={t('common.delete')}
+        icon={<PiPlusBold />}
+        onClick={addIPAdapter}
       />
     </ButtonGroup>
   );
