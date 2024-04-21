@@ -4162,7 +4162,7 @@ export type components = {
        * @description The nodes in this graph
        */
       nodes: {
-        [key: string]: components["schemas"]["CoreMetadataInvocation"] | components["schemas"]["SDXLLoRALoaderInvocation"] | components["schemas"]["ImageChannelMultiplyInvocation"] | components["schemas"]["FloatCollectionInvocation"] | components["schemas"]["LeresImageProcessorInvocation"] | components["schemas"]["BlankImageInvocation"] | components["schemas"]["ShowImageInvocation"] | components["schemas"]["TileResamplerProcessorInvocation"] | components["schemas"]["CalculateImageTilesInvocation"] | components["schemas"]["TileToPropertiesInvocation"] | components["schemas"]["LineartImageProcessorInvocation"] | components["schemas"]["HedImageProcessorInvocation"] | components["schemas"]["RectangleMaskInvocation"] | components["schemas"]["CvInpaintInvocation"] | components["schemas"]["SeamlessModeInvocation"] | components["schemas"]["StringJoinInvocation"] | components["schemas"]["ConditioningInvocation"] | components["schemas"]["StringInvocation"] | components["schemas"]["IntegerCollectionInvocation"] | components["schemas"]["MaskEdgeInvocation"] | components["schemas"]["PromptsFromFileInvocation"] | components["schemas"]["RandomFloatInvocation"] | components["schemas"]["SDXLRefinerCompelPromptInvocation"] | components["schemas"]["AddInvocation"] | components["schemas"]["SegmentAnythingProcessorInvocation"] | components["schemas"]["ColorCorrectInvocation"] | components["schemas"]["CompelInvocation"] | components["schemas"]["MaskFromIDInvocation"] | components["schemas"]["ESRGANInvocation"] | components["schemas"]["MidasDepthImageProcessorInvocation"] | components["schemas"]["SaveImageInvocation"] | components["schemas"]["T2IAdapterInvocation"] | components["schemas"]["CLIPSkipInvocation"] | components["schemas"]["SDXLCompelPromptInvocation"] | components["schemas"]["ImageCollectionInvocation"] | components["schemas"]["ZoeDepthImageProcessorInvocation"] | components["schemas"]["CV2InfillInvocation"] | components["schemas"]["RoundInvocation"] | components["schemas"]["StringSplitInvocation"] | components["schemas"]["DynamicPromptInvocation"] | components["schemas"]["FreeUInvocation"] | components["schemas"]["StringJoinThreeInvocation"] | components["schemas"]["IdealSizeInvocation"] | components["schemas"]["AlphaMaskToTensorInvocation"] | components["schemas"]["CreateGradientMaskInvocation"] | components["schemas"]["LoRALoaderInvocation"] | components["schemas"]["RandomRangeInvocation"] | components["schemas"]["MlsdImageProcessorInvocation"] | components["schemas"]["ImageHueAdjustmentInvocation"] | components["schemas"]["CalculateImageTilesMinimumOverlapInvocation"] | components["schemas"]["DenoiseLatentsInvocation"] | components["schemas"]["ImageMultiplyInvocation"] | components["schemas"]["ImageInverseLerpInvocation"] | components["schemas"]["BooleanInvocation"] | components["schemas"]["CropLatentsCoreInvocation"] | components["schemas"]["InfillPatchMatchInvocation"] | components["schemas"]["FloatToIntegerInvocation"] | components["schemas"]["ImageChannelInvocation"] | components["schemas"]["FaceMaskInvocation"] | components["schemas"]["ColorInvocation"] | components["schemas"]["CanvasPasteBackInvocation"] | components["schemas"]["MergeTilesToImageInvocation"] | components["schemas"]["SchedulerInvocation"] | components["schemas"]["CreateDenoiseMaskInvocation"] | components["schemas"]["ResizeLatentsInvocation"] | components["schemas"]["VAELoaderInvocation"] | components["schemas"]["ImageLerpInvocation"] | components["schemas"]["LineartAnimeImageProcessorInvocation"] | components["schemas"]["LatentsToImageInvocation"] | components["schemas"]["StepParamEasingInvocation"] | components["schemas"]["SDXLRefinerModelLoaderInvocation"] | components["schemas"]["FloatInvocation"] | components["schemas"]["FaceOffInvocation"] | components["schemas"]["MetadataInvocation"] | components["schemas"]["InvertTensorMaskInvocation"] | components["schemas"]["MergeMetadataInvocation"] | components["schemas"]["ImageToLatentsInvocation"] | components["schemas"]["PairTileImageInvocation"] | components["schemas"]["FaceIdentifierInvocation"] | components["schemas"]["PidiImageProcessorInvocation"] | components["schemas"]["ImageConvertInvocation"] | components["schemas"]["RangeInvocation"] | components["schemas"]["MaskFromAlphaInvocation"] | components["schemas"]["DWOpenposeImageProcessorInvocation"] | components["schemas"]["RangeOfSizeInvocation"] | components["schemas"]["LatentsInvocation"] | components["schemas"]["LatentsCollectionInvocation"] | components["schemas"]["ControlNetInvocation"] | components["schemas"]["MediapipeFaceProcessorInvocation"] | components["schemas"]["InfillColorInvocation"] | components["schemas"]["BlendLatentsInvocation"] | components["schemas"]["StringReplaceInvocation"] | components["schemas"]["ImageScaleInvocation"] | components["schemas"]["InfillTileInvocation"] | components["schemas"]["CannyImageProcessorInvocation"] | components["schemas"]["ConditioningCollectionInvocation"] | components["schemas"]["FloatMathInvocation"] | components["schemas"]["ImageBlurInvocation"] | components["schemas"]["DepthAnythingImageProcessorInvocation"] | components["schemas"]["BooleanCollectionInvocation"] | components["schemas"]["RandomIntInvocation"] | components["schemas"]["LaMaInfillInvocation"] | components["schemas"]["IterateInvocation"] | components["schemas"]["IntegerInvocation"] | components["schemas"]["IntegerMathInvocation"] | components["schemas"]["IPAdapterInvocation"] | components["schemas"]["ImagePasteInvocation"] | components["schemas"]["ImageNSFWBlurInvocation"] | components["schemas"]["CollectInvocation"] | components["schemas"]["ColorMapImageProcessorInvocation"] | components["schemas"]["SDXLModelLoaderInvocation"] | components["schemas"]["FloatLinearRangeInvocation"] | components["schemas"]["StringCollectionInvocation"] | components["schemas"]["NormalbaeImageProcessorInvocation"] | components["schemas"]["CalculateImageTilesEvenSplitInvocation"] | components["schemas"]["MaskCombineInvocation"] | components["schemas"]["CenterPadCropInvocation"] | components["schemas"]["ImageResizeInvocation"] | components["schemas"]["NoiseInvocation"] | components["schemas"]["DivideInvocation"] | components["schemas"]["ImageCropInvocation"] | components["schemas"]["ImageWatermarkInvocation"] | components["schemas"]["MainModelLoaderInvocation"] | components["schemas"]["ImageInvocation"] | components["schemas"]["StringSplitNegInvocation"] | components["schemas"]["MultiplyInvocation"] | components["schemas"]["ScaleLatentsInvocation"] | components["schemas"]["ImageChannelOffsetInvocation"] | components["schemas"]["SubtractInvocation"] | components["schemas"]["MetadataItemInvocation"] | components["schemas"]["UnsharpMaskInvocation"] | components["schemas"]["ContentShuffleImageProcessorInvocation"];
+        [key: string]: components["schemas"]["MlsdImageProcessorInvocation"] | components["schemas"]["FloatToIntegerInvocation"] | components["schemas"]["DWOpenposeImageProcessorInvocation"] | components["schemas"]["DynamicPromptInvocation"] | components["schemas"]["CropLatentsCoreInvocation"] | components["schemas"]["RectangleMaskInvocation"] | components["schemas"]["ConditioningCollectionInvocation"] | components["schemas"]["PairTileImageInvocation"] | components["schemas"]["ResizeLatentsInvocation"] | components["schemas"]["T2IAdapterInvocation"] | components["schemas"]["SchedulerInvocation"] | components["schemas"]["StringCollectionInvocation"] | components["schemas"]["LineartAnimeImageProcessorInvocation"] | components["schemas"]["MediapipeFaceProcessorInvocation"] | components["schemas"]["ImageMultiplyInvocation"] | components["schemas"]["HedImageProcessorInvocation"] | components["schemas"]["LatentsToImageInvocation"] | components["schemas"]["ImageHueAdjustmentInvocation"] | components["schemas"]["AddInvocation"] | components["schemas"]["ImageInverseLerpInvocation"] | components["schemas"]["ImageChannelInvocation"] | components["schemas"]["RangeOfSizeInvocation"] | components["schemas"]["DepthAnythingImageProcessorInvocation"] | components["schemas"]["CreateDenoiseMaskInvocation"] | components["schemas"]["RandomRangeInvocation"] | components["schemas"]["IterateInvocation"] | components["schemas"]["StringSplitNegInvocation"] | components["schemas"]["StringSplitInvocation"] | components["schemas"]["CompelInvocation"] | components["schemas"]["CV2InfillInvocation"] | components["schemas"]["ImageToLatentsInvocation"] | components["schemas"]["ImageLerpInvocation"] | components["schemas"]["FloatCollectionInvocation"] | components["schemas"]["ImageInvocation"] | components["schemas"]["SDXLRefinerCompelPromptInvocation"] | components["schemas"]["ColorMapImageProcessorInvocation"] | components["schemas"]["StringInvocation"] | components["schemas"]["MaskFromAlphaInvocation"] | components["schemas"]["BooleanCollectionInvocation"] | components["schemas"]["SDXLModelLoaderInvocation"] | components["schemas"]["ImageConvertInvocation"] | components["schemas"]["CalculateImageTilesEvenSplitInvocation"] | components["schemas"]["CLIPSkipInvocation"] | components["schemas"]["SDXLCompelPromptInvocation"] | components["schemas"]["BlendLatentsInvocation"] | components["schemas"]["InfillPatchMatchInvocation"] | components["schemas"]["IntegerCollectionInvocation"] | components["schemas"]["VAELoaderInvocation"] | components["schemas"]["ESRGANInvocation"] | components["schemas"]["AlphaMaskToTensorInvocation"] | components["schemas"]["MainModelLoaderInvocation"] | components["schemas"]["ImageScaleInvocation"] | components["schemas"]["FloatLinearRangeInvocation"] | components["schemas"]["ConditioningInvocation"] | components["schemas"]["TileResamplerProcessorInvocation"] | components["schemas"]["ImageBlurInvocation"] | components["schemas"]["RandomIntInvocation"] | components["schemas"]["BlankImageInvocation"] | components["schemas"]["NoiseInvocation"] | components["schemas"]["ScaleLatentsInvocation"] | components["schemas"]["ContentShuffleImageProcessorInvocation"] | components["schemas"]["NormalbaeImageProcessorInvocation"] | components["schemas"]["ImagePasteInvocation"] | components["schemas"]["CalculateImageTilesInvocation"] | components["schemas"]["TileToPropertiesInvocation"] | components["schemas"]["CvInpaintInvocation"] | components["schemas"]["ImageCollectionInvocation"] | components["schemas"]["LineartImageProcessorInvocation"] | components["schemas"]["ShowImageInvocation"] | components["schemas"]["CollectInvocation"] | components["schemas"]["CenterPadCropInvocation"] | components["schemas"]["ImageNSFWBlurInvocation"] | components["schemas"]["MaskCombineInvocation"] | components["schemas"]["MultiplyInvocation"] | components["schemas"]["InfillTileInvocation"] | components["schemas"]["SegmentAnythingProcessorInvocation"] | components["schemas"]["InfillColorInvocation"] | components["schemas"]["ImageResizeInvocation"] | components["schemas"]["SDXLLoRALoaderInvocation"] | components["schemas"]["InvertTensorMaskInvocation"] | components["schemas"]["SeamlessModeInvocation"] | components["schemas"]["ImageCropInvocation"] | components["schemas"]["RangeInvocation"] | components["schemas"]["FloatInvocation"] | components["schemas"]["FaceMaskInvocation"] | components["schemas"]["StringJoinThreeInvocation"] | components["schemas"]["ImageChannelOffsetInvocation"] | components["schemas"]["ImageWatermarkInvocation"] | components["schemas"]["IPAdapterInvocation"] | components["schemas"]["DivideInvocation"] | components["schemas"]["MidasDepthImageProcessorInvocation"] | components["schemas"]["CannyImageProcessorInvocation"] | components["schemas"]["UnsharpMaskInvocation"] | components["schemas"]["ColorInvocation"] | components["schemas"]["ImageMaskToTensorInvocation"] | components["schemas"]["ImageChannelMultiplyInvocation"] | components["schemas"]["MergeMetadataInvocation"] | components["schemas"]["FreeUInvocation"] | components["schemas"]["LaMaInfillInvocation"] | components["schemas"]["CoreMetadataInvocation"] | components["schemas"]["FaceOffInvocation"] | components["schemas"]["MaskFromIDInvocation"] | components["schemas"]["ControlNetInvocation"] | components["schemas"]["RandomFloatInvocation"] | components["schemas"]["StringJoinInvocation"] | components["schemas"]["FaceIdentifierInvocation"] | components["schemas"]["ZoeDepthImageProcessorInvocation"] | components["schemas"]["CalculateImageTilesMinimumOverlapInvocation"] | components["schemas"]["SaveImageInvocation"] | components["schemas"]["IntegerMathInvocation"] | components["schemas"]["BooleanInvocation"] | components["schemas"]["IntegerInvocation"] | components["schemas"]["IdealSizeInvocation"] | components["schemas"]["MetadataItemInvocation"] | components["schemas"]["FloatMathInvocation"] | components["schemas"]["SubtractInvocation"] | components["schemas"]["LeresImageProcessorInvocation"] | components["schemas"]["PidiImageProcessorInvocation"] | components["schemas"]["StepParamEasingInvocation"] | components["schemas"]["MaskEdgeInvocation"] | components["schemas"]["CanvasPasteBackInvocation"] | components["schemas"]["PromptsFromFileInvocation"] | components["schemas"]["MergeTilesToImageInvocation"] | components["schemas"]["LatentsInvocation"] | components["schemas"]["LatentsCollectionInvocation"] | components["schemas"]["DenoiseLatentsInvocation"] | components["schemas"]["ColorCorrectInvocation"] | components["schemas"]["StringReplaceInvocation"] | components["schemas"]["CreateGradientMaskInvocation"] | components["schemas"]["LoRALoaderInvocation"] | components["schemas"]["MetadataInvocation"] | components["schemas"]["RoundInvocation"] | components["schemas"]["SDXLRefinerModelLoaderInvocation"];
       };
       /**
        * Edges
@@ -4199,7 +4199,7 @@ export type components = {
        * @description The results of node executions
        */
       results: {
-        [key: string]: components["schemas"]["SchedulerOutput"] | components["schemas"]["LatentsOutput"] | components["schemas"]["FaceOffOutput"] | components["schemas"]["SDXLModelLoaderOutput"] | components["schemas"]["StringPosNegOutput"] | components["schemas"]["IPAdapterOutput"] | components["schemas"]["IterateInvocationOutput"] | components["schemas"]["IntegerCollectionOutput"] | components["schemas"]["BooleanOutput"] | components["schemas"]["FloatOutput"] | components["schemas"]["PairTileImageOutput"] | components["schemas"]["SDXLLoRALoaderOutput"] | components["schemas"]["GradientMaskOutput"] | components["schemas"]["VAEOutput"] | components["schemas"]["String2Output"] | components["schemas"]["FloatCollectionOutput"] | components["schemas"]["ConditioningOutput"] | components["schemas"]["NoiseOutput"] | components["schemas"]["MetadataOutput"] | components["schemas"]["CLIPOutput"] | components["schemas"]["ColorOutput"] | components["schemas"]["ColorCollectionOutput"] | components["schemas"]["SDXLRefinerModelLoaderOutput"] | components["schemas"]["DenoiseMaskOutput"] | components["schemas"]["SeamlessModeOutput"] | components["schemas"]["T2IAdapterOutput"] | components["schemas"]["ImageOutput"] | components["schemas"]["MaskOutput"] | components["schemas"]["ConditioningCollectionOutput"] | components["schemas"]["ControlOutput"] | components["schemas"]["CollectInvocationOutput"] | components["schemas"]["IntegerOutput"] | components["schemas"]["LatentsCollectionOutput"] | components["schemas"]["TileToPropertiesOutput"] | components["schemas"]["ImageCollectionOutput"] | components["schemas"]["UNetOutput"] | components["schemas"]["StringCollectionOutput"] | components["schemas"]["ModelLoaderOutput"] | components["schemas"]["FaceMaskOutput"] | components["schemas"]["MetadataItemOutput"] | components["schemas"]["StringOutput"] | components["schemas"]["CLIPSkipInvocationOutput"] | components["schemas"]["IdealSizeOutput"] | components["schemas"]["LoRALoaderOutput"] | components["schemas"]["BooleanCollectionOutput"] | components["schemas"]["CalculateImageTilesOutput"];
+        [key: string]: components["schemas"]["BooleanCollectionOutput"] | components["schemas"]["GradientMaskOutput"] | components["schemas"]["SchedulerOutput"] | components["schemas"]["LoRALoaderOutput"] | components["schemas"]["FaceOffOutput"] | components["schemas"]["SeamlessModeOutput"] | components["schemas"]["FloatOutput"] | components["schemas"]["PairTileImageOutput"] | components["schemas"]["ControlOutput"] | components["schemas"]["SDXLRefinerModelLoaderOutput"] | components["schemas"]["BooleanOutput"] | components["schemas"]["FaceMaskOutput"] | components["schemas"]["ImageOutput"] | components["schemas"]["LatentsOutput"] | components["schemas"]["StringPosNegOutput"] | components["schemas"]["CLIPSkipInvocationOutput"] | components["schemas"]["VAEOutput"] | components["schemas"]["MetadataOutput"] | components["schemas"]["CLIPOutput"] | components["schemas"]["IntegerCollectionOutput"] | components["schemas"]["IdealSizeOutput"] | components["schemas"]["FloatCollectionOutput"] | components["schemas"]["StringCollectionOutput"] | components["schemas"]["ConditioningOutput"] | components["schemas"]["TileToPropertiesOutput"] | components["schemas"]["ColorOutput"] | components["schemas"]["ColorCollectionOutput"] | components["schemas"]["CollectInvocationOutput"] | components["schemas"]["IterateInvocationOutput"] | components["schemas"]["DenoiseMaskOutput"] | components["schemas"]["SDXLModelLoaderOutput"] | components["schemas"]["SDXLLoRALoaderOutput"] | components["schemas"]["T2IAdapterOutput"] | components["schemas"]["MaskOutput"] | components["schemas"]["ConditioningCollectionOutput"] | components["schemas"]["StringOutput"] | components["schemas"]["UNetOutput"] | components["schemas"]["ModelLoaderOutput"] | components["schemas"]["NoiseOutput"] | components["schemas"]["String2Output"] | components["schemas"]["ImageCollectionOutput"] | components["schemas"]["IntegerOutput"] | components["schemas"]["LatentsCollectionOutput"] | components["schemas"]["IPAdapterOutput"] | components["schemas"]["CalculateImageTilesOutput"] | components["schemas"]["MetadataItemOutput"];
       };
       /**
        * Errors
@@ -5329,6 +5329,51 @@ export type components = {
        * @constant
        */
       type: "img_lerp";
+    };
+    /**
+     * Image Mask to Tensor
+     * @description Convert a mask image to a tensor. Converts the image to grayscale and uses thresholding at the specified value.
+     */
+    ImageMaskToTensorInvocation: {
+      /** @description Optional metadata to be saved with the image */
+      metadata?: components["schemas"]["MetadataField"] | null;
+      /**
+       * Id
+       * @description The id of this instance of an invocation. Must be unique among all instances of invocations.
+       */
+      id: string;
+      /**
+       * Is Intermediate
+       * @description Whether or not this is an intermediate invocation.
+       * @default false
+       */
+      is_intermediate?: boolean;
+      /**
+       * Use Cache
+       * @description Whether or not to use the cache
+       * @default true
+       */
+      use_cache?: boolean;
+      /** @description The mask image to convert. */
+      image?: components["schemas"]["ImageField"];
+      /**
+       * Cutoff
+       * @description Cutoff (<)
+       * @default 128
+       */
+      cutoff?: number;
+      /**
+       * Invert
+       * @description Whether to invert the mask.
+       * @default false
+       */
+      invert?: boolean;
+      /**
+       * type
+       * @default image_mask_to_tensor
+       * @constant
+       */
+      type: "image_mask_to_tensor";
     };
     /**
      * Multiply Images
@@ -11343,6 +11388,141 @@ export type components = {
      * @enum {string}
      */
     UIType: "MainModelField" | "SDXLMainModelField" | "SDXLRefinerModelField" | "ONNXModelField" | "VAEModelField" | "LoRAModelField" | "ControlNetModelField" | "IPAdapterModelField" | "T2IAdapterModelField" | "SchedulerField" | "AnyField" | "CollectionField" | "CollectionItemField" | "DEPRECATED_Boolean" | "DEPRECATED_Color" | "DEPRECATED_Conditioning" | "DEPRECATED_Control" | "DEPRECATED_Float" | "DEPRECATED_Image" | "DEPRECATED_Integer" | "DEPRECATED_Latents" | "DEPRECATED_String" | "DEPRECATED_BooleanCollection" | "DEPRECATED_ColorCollection" | "DEPRECATED_ConditioningCollection" | "DEPRECATED_ControlCollection" | "DEPRECATED_FloatCollection" | "DEPRECATED_ImageCollection" | "DEPRECATED_IntegerCollection" | "DEPRECATED_LatentsCollection" | "DEPRECATED_StringCollection" | "DEPRECATED_BooleanPolymorphic" | "DEPRECATED_ColorPolymorphic" | "DEPRECATED_ConditioningPolymorphic" | "DEPRECATED_ControlPolymorphic" | "DEPRECATED_FloatPolymorphic" | "DEPRECATED_ImagePolymorphic" | "DEPRECATED_IntegerPolymorphic" | "DEPRECATED_LatentsPolymorphic" | "DEPRECATED_StringPolymorphic" | "DEPRECATED_UNet" | "DEPRECATED_Vae" | "DEPRECATED_CLIP" | "DEPRECATED_Collection" | "DEPRECATED_CollectionItem" | "DEPRECATED_Enum" | "DEPRECATED_WorkflowField" | "DEPRECATED_IsIntermediate" | "DEPRECATED_BoardField" | "DEPRECATED_MetadataItem" | "DEPRECATED_MetadataItemCollection" | "DEPRECATED_MetadataItemPolymorphic" | "DEPRECATED_MetadataDict";
+    InvocationOutputMap: {
+      mlsd_image_processor: components["schemas"]["ImageOutput"];
+      float_to_int: components["schemas"]["IntegerOutput"];
+      dw_openpose_image_processor: components["schemas"]["ImageOutput"];
+      dynamic_prompt: components["schemas"]["StringCollectionOutput"];
+      crop_latents: components["schemas"]["LatentsOutput"];
+      rectangle_mask: components["schemas"]["MaskOutput"];
+      conditioning_collection: components["schemas"]["ConditioningCollectionOutput"];
+      pair_tile_image: components["schemas"]["PairTileImageOutput"];
+      lresize: components["schemas"]["LatentsOutput"];
+      t2i_adapter: components["schemas"]["T2IAdapterOutput"];
+      scheduler: components["schemas"]["SchedulerOutput"];
+      string_collection: components["schemas"]["StringCollectionOutput"];
+      lineart_anime_image_processor: components["schemas"]["ImageOutput"];
+      mediapipe_face_processor: components["schemas"]["ImageOutput"];
+      img_mul: components["schemas"]["ImageOutput"];
+      hed_image_processor: components["schemas"]["ImageOutput"];
+      l2i: components["schemas"]["ImageOutput"];
+      img_hue_adjust: components["schemas"]["ImageOutput"];
+      add: components["schemas"]["IntegerOutput"];
+      img_ilerp: components["schemas"]["ImageOutput"];
+      img_chan: components["schemas"]["ImageOutput"];
+      range_of_size: components["schemas"]["IntegerCollectionOutput"];
+      depth_anything_image_processor: components["schemas"]["ImageOutput"];
+      create_denoise_mask: components["schemas"]["DenoiseMaskOutput"];
+      random_range: components["schemas"]["IntegerCollectionOutput"];
+      iterate: components["schemas"]["IterateInvocationOutput"];
+      string_split_neg: components["schemas"]["StringPosNegOutput"];
+      string_split: components["schemas"]["String2Output"];
+      compel: components["schemas"]["ConditioningOutput"];
+      infill_cv2: components["schemas"]["ImageOutput"];
+      i2l: components["schemas"]["LatentsOutput"];
+      img_lerp: components["schemas"]["ImageOutput"];
+      float_collection: components["schemas"]["FloatCollectionOutput"];
+      image: components["schemas"]["ImageOutput"];
+      sdxl_refiner_compel_prompt: components["schemas"]["ConditioningOutput"];
+      color_map_image_processor: components["schemas"]["ImageOutput"];
+      string: components["schemas"]["StringOutput"];
+      tomask: components["schemas"]["ImageOutput"];
+      boolean_collection: components["schemas"]["BooleanCollectionOutput"];
+      sdxl_model_loader: components["schemas"]["SDXLModelLoaderOutput"];
+      img_conv: components["schemas"]["ImageOutput"];
+      calculate_image_tiles_even_split: components["schemas"]["CalculateImageTilesOutput"];
+      clip_skip: components["schemas"]["CLIPSkipInvocationOutput"];
+      sdxl_compel_prompt: components["schemas"]["ConditioningOutput"];
+      lblend: components["schemas"]["LatentsOutput"];
+      infill_patchmatch: components["schemas"]["ImageOutput"];
+      integer_collection: components["schemas"]["IntegerCollectionOutput"];
+      vae_loader: components["schemas"]["VAEOutput"];
+      esrgan: components["schemas"]["ImageOutput"];
+      alpha_mask_to_tensor: components["schemas"]["MaskOutput"];
+      main_model_loader: components["schemas"]["ModelLoaderOutput"];
+      img_scale: components["schemas"]["ImageOutput"];
+      float_range: components["schemas"]["FloatCollectionOutput"];
+      conditioning: components["schemas"]["ConditioningOutput"];
+      tile_image_processor: components["schemas"]["ImageOutput"];
+      img_blur: components["schemas"]["ImageOutput"];
+      rand_int: components["schemas"]["IntegerOutput"];
+      blank_image: components["schemas"]["ImageOutput"];
+      noise: components["schemas"]["NoiseOutput"];
+      lscale: components["schemas"]["LatentsOutput"];
+      content_shuffle_image_processor: components["schemas"]["ImageOutput"];
+      normalbae_image_processor: components["schemas"]["ImageOutput"];
+      img_paste: components["schemas"]["ImageOutput"];
+      calculate_image_tiles: components["schemas"]["CalculateImageTilesOutput"];
+      tile_to_properties: components["schemas"]["TileToPropertiesOutput"];
+      cv_inpaint: components["schemas"]["ImageOutput"];
+      image_collection: components["schemas"]["ImageCollectionOutput"];
+      lineart_image_processor: components["schemas"]["ImageOutput"];
+      show_image: components["schemas"]["ImageOutput"];
+      collect: components["schemas"]["CollectInvocationOutput"];
+      img_pad_crop: components["schemas"]["ImageOutput"];
+      img_nsfw: components["schemas"]["ImageOutput"];
+      mask_combine: components["schemas"]["ImageOutput"];
+      mul: components["schemas"]["IntegerOutput"];
+      infill_tile: components["schemas"]["ImageOutput"];
+      segment_anything_processor: components["schemas"]["ImageOutput"];
+      infill_rgba: components["schemas"]["ImageOutput"];
+      img_resize: components["schemas"]["ImageOutput"];
+      sdxl_lora_loader: components["schemas"]["SDXLLoRALoaderOutput"];
+      invert_tensor_mask: components["schemas"]["MaskOutput"];
+      seamless: components["schemas"]["SeamlessModeOutput"];
+      img_crop: components["schemas"]["ImageOutput"];
+      range: components["schemas"]["IntegerCollectionOutput"];
+      float: components["schemas"]["FloatOutput"];
+      face_mask_detection: components["schemas"]["FaceMaskOutput"];
+      string_join_three: components["schemas"]["StringOutput"];
+      img_channel_offset: components["schemas"]["ImageOutput"];
+      img_watermark: components["schemas"]["ImageOutput"];
+      ip_adapter: components["schemas"]["IPAdapterOutput"];
+      div: components["schemas"]["IntegerOutput"];
+      midas_depth_image_processor: components["schemas"]["ImageOutput"];
+      canny_image_processor: components["schemas"]["ImageOutput"];
+      unsharp_mask: components["schemas"]["ImageOutput"];
+      color: components["schemas"]["ColorOutput"];
+      image_mask_to_tensor: components["schemas"]["MaskOutput"];
+      img_channel_multiply: components["schemas"]["ImageOutput"];
+      merge_metadata: components["schemas"]["MetadataOutput"];
+      freeu: components["schemas"]["UNetOutput"];
+      infill_lama: components["schemas"]["ImageOutput"];
+      core_metadata: components["schemas"]["MetadataOutput"];
+      face_off: components["schemas"]["FaceOffOutput"];
+      mask_from_id: components["schemas"]["ImageOutput"];
+      controlnet: components["schemas"]["ControlOutput"];
+      rand_float: components["schemas"]["FloatOutput"];
+      string_join: components["schemas"]["StringOutput"];
+      face_identifier: components["schemas"]["ImageOutput"];
+      zoe_depth_image_processor: components["schemas"]["ImageOutput"];
+      calculate_image_tiles_min_overlap: components["schemas"]["CalculateImageTilesOutput"];
+      save_image: components["schemas"]["ImageOutput"];
+      integer_math: components["schemas"]["IntegerOutput"];
+      boolean: components["schemas"]["BooleanOutput"];
+      integer: components["schemas"]["IntegerOutput"];
+      ideal_size: components["schemas"]["IdealSizeOutput"];
+      metadata_item: components["schemas"]["MetadataItemOutput"];
+      float_math: components["schemas"]["FloatOutput"];
+      sub: components["schemas"]["IntegerOutput"];
+      leres_image_processor: components["schemas"]["ImageOutput"];
+      pidi_image_processor: components["schemas"]["ImageOutput"];
+      step_param_easing: components["schemas"]["FloatCollectionOutput"];
+      mask_edge: components["schemas"]["ImageOutput"];
+      canvas_paste_back: components["schemas"]["ImageOutput"];
+      prompt_from_file: components["schemas"]["StringCollectionOutput"];
+      merge_tiles_to_image: components["schemas"]["ImageOutput"];
+      latents: components["schemas"]["LatentsOutput"];
+      latents_collection: components["schemas"]["LatentsCollectionOutput"];
+      denoise_latents: components["schemas"]["LatentsOutput"];
+      color_correct: components["schemas"]["ImageOutput"];
+      string_replace: components["schemas"]["StringOutput"];
+      create_gradient_mask: components["schemas"]["GradientMaskOutput"];
+      lora_loader: components["schemas"]["LoRALoaderOutput"];
+      metadata: components["schemas"]["MetadataOutput"];
+      round_float: components["schemas"]["FloatOutput"];
+      sdxl_refiner_model_loader: components["schemas"]["SDXLRefinerModelLoaderOutput"];
+    };
   };
   responses: never;
   parameters: never;
