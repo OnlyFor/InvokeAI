@@ -4,7 +4,6 @@ import type {
   ParameterIPAdapterModel,
   ParameterT2IAdapterModel,
 } from 'features/parameters/types/parameterSchemas';
-import type { components } from 'services/api/schema';
 import type {
   CannyImageProcessorInvocation,
   ColorMapImageProcessorInvocation,
@@ -12,6 +11,7 @@ import type {
   DepthAnythingImageProcessorInvocation,
   DWOpenposeImageProcessorInvocation,
   HedImageProcessorInvocation,
+  Invocation,
   LineartAnimeImageProcessorInvocation,
   LineartImageProcessorInvocation,
   MediapipeFaceProcessorInvocation,
@@ -204,7 +204,7 @@ export type RequiredControlAdapterProcessorNode =
     >
   | { type: 'none' };
 
-export type ControlMode = NonNullable<components['schemas']['ControlNetInvocation']['control_mode']>;
+export type ControlMode = NonNullable<Invocation<'controlnet'>['control_mode']>;
 
 const zResizeMode = z.enum(['just_resize', 'crop_resize', 'fill_resize', 'just_resize_simple']);
 export type ResizeMode = z.infer<typeof zResizeMode>;
