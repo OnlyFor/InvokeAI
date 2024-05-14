@@ -127,9 +127,12 @@ const selector = createMemoizedSelector(
               } else if (l.controlAdapter.processorConfig && !l.controlAdapter.processedImage) {
                 problems.push(i18n.t('parameters.invoke.layer.controlAdapterImageNotProcessed'));
               }
-              // T2I Adapters require images have dimensions that are multiples of 64
+              // T2I Adapters require images have dimensions that are multiples of 64 (SD1.5) or 32 (SDXL)
               if (l.controlAdapter.type === 't2i_adapter' && (size.width % 64 !== 0 || size.height % 64 !== 0)) {
-                problems.push(i18n.t('parameters.invoke.layer.t2iAdapterIncompatibleDimensions'));
+                const multiple = model?.base === 'sdxl' ? 32 : 64;
+                if (size.width % multiple !== 0 || size.height % multiple !== 0) {
+                  problems.push(i18n.t('parameters.invoke.layer.t2iAdapterIncompatibleDimensions'));
+                }
               }
             }
 
