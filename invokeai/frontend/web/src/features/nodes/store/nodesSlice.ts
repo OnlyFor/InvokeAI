@@ -17,7 +17,6 @@ import type {
   IPAdapterModelFieldValue,
   LoRAModelFieldValue,
   MainModelFieldValue,
-  ModelIdentifierFieldValue,
   SchedulerFieldValue,
   SDXLRefinerModelFieldValue,
   StatefulFieldValue,
@@ -37,7 +36,6 @@ import {
   zIPAdapterModelFieldValue,
   zLoRAModelFieldValue,
   zMainModelFieldValue,
-  zModelIdentifierFieldValue,
   zSchedulerFieldValue,
   zSDXLRefinerModelFieldValue,
   zStatefulFieldValue,
@@ -296,9 +294,6 @@ export const nodesSlice = createSlice({
     fieldMainModelValueChanged: (state, action: FieldValueAction<MainModelFieldValue>) => {
       fieldValueReducer(state, action, zMainModelFieldValue);
     },
-    fieldModelIdentifierValueChanged: (state, action: FieldValueAction<ModelIdentifierFieldValue>) => {
-      fieldValueReducer(state, action, zModelIdentifierFieldValue);
-    },
     fieldRefinerModelValueChanged: (state, action: FieldValueAction<SDXLRefinerModelFieldValue>) => {
       fieldValueReducer(state, action, zSDXLRefinerModelFieldValue);
     },
@@ -370,7 +365,6 @@ export const {
   fieldT2IAdapterModelValueChanged,
   fieldLabelChanged,
   fieldLoRAModelValueChanged,
-  fieldModelIdentifierValueChanged,
   fieldMainModelValueChanged,
   fieldNumberValueChanged,
   fieldRefinerModelValueChanged,

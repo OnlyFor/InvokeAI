@@ -1,4 +1,3 @@
-import ModelIdentifierFieldInputComponent from 'features/nodes/components/flow/nodes/Invocation/fields/inputs/ModelIdentifierFieldInputComponent';
 import { useFieldInputInstance } from 'features/nodes/hooks/useFieldInputInstance';
 import { useFieldInputTemplate } from 'features/nodes/hooks/useFieldInputTemplate';
 import {
@@ -24,8 +23,6 @@ import {
   isLoRAModelFieldInputTemplate,
   isMainModelFieldInputInstance,
   isMainModelFieldInputTemplate,
-  isModelIdentifierFieldInputInstance,
-  isModelIdentifierFieldInputTemplate,
   isSchedulerFieldInputInstance,
   isSchedulerFieldInputTemplate,
   isSDXLMainModelFieldInputInstance,
@@ -96,10 +93,6 @@ const InputFieldRenderer = ({ nodeId, fieldName }: InputFieldProps) => {
 
   if (isMainModelFieldInputInstance(fieldInstance) && isMainModelFieldInputTemplate(fieldTemplate)) {
     return <MainModelFieldInputComponent nodeId={nodeId} field={fieldInstance} fieldTemplate={fieldTemplate} />;
-  }
-
-  if (isModelIdentifierFieldInputInstance(fieldInstance) && isModelIdentifierFieldInputTemplate(fieldTemplate)) {
-    return <ModelIdentifierFieldInputComponent nodeId={nodeId} field={fieldInstance} fieldTemplate={fieldTemplate} />;
   }
 
   if (isSDXLRefinerModelFieldInputInstance(fieldInstance) && isSDXLRefinerModelFieldInputTemplate(fieldTemplate)) {
