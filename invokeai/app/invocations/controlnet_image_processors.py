@@ -24,6 +24,7 @@ from pydantic import BaseModel, Field, field_validator, model_validator
 from invokeai.app.invocations.fields import (
     FieldDescriptions,
     ImageField,
+    Input,
     InputField,
     OutputField,
     UIType,
@@ -79,13 +80,13 @@ class ControlOutput(BaseInvocationOutput):
     control: ControlField = OutputField(description=FieldDescriptions.control)
 
 
-@invocation("controlnet", title="ControlNet", tags=["controlnet"], category="controlnet", version="1.1.2")
+@invocation("controlnet", title="ControlNet", tags=["controlnet"], category="controlnet", version="1.1.1")
 class ControlNetInvocation(BaseInvocation):
     """Collects ControlNet info to pass to other nodes"""
 
     image: ImageField = InputField(description="The control image")
     control_model: ModelIdentifierField = InputField(
-        description=FieldDescriptions.controlnet_model, ui_type=UIType.ControlNetModel
+        description=FieldDescriptions.controlnet_model, input=Input.Direct, ui_type=UIType.ControlNetModel
     )
     control_weight: Union[float, List[float]] = InputField(
         default=1.0, ge=-1, le=2, description="The weight given to the ControlNet"
