@@ -1,7 +1,7 @@
 import { deepClone } from 'common/util/deepClone';
 import { zModelIdentifierField } from 'features/nodes/types/common';
 import { merge, omit } from 'lodash-es';
-import type { BaseModelType, ControlNetModelConfig, Graph, ImageDTO, T2IAdapterModelConfig } from 'services/api/types';
+import type { BaseModelType, ControlNetModelConfig, ImageDTO, S, T2IAdapterModelConfig } from 'services/api/types';
 import { z } from 'zod';
 
 const zId = z.string().min(1);
@@ -219,7 +219,7 @@ type ProcessorData<T extends ProcessorTypeV2> = {
   buildNode(
     image: ImageWithDims,
     config: Extract<ProcessorConfig, { type: T }>
-  ): Extract<Graph['nodes'][string], { type: T }>;
+  ): Extract<S['AnyInvocation'], { type: T }>;
 };
 
 const minDim = (image: ImageWithDims): number => Math.min(image.width, image.height);
