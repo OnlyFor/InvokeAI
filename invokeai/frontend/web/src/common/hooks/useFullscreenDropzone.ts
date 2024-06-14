@@ -1,7 +1,5 @@
-import { createMemoizedSelector } from 'app/store/createMemoizedSelector';
 import { useAppSelector } from 'app/store/storeHooks';
 import { toast } from 'features/toast/toast';
-import { activeTabNameSelector } from 'features/ui/store/uiSelectors';
 import { useCallback, useEffect, useState } from 'react';
 import type { Accept, FileRejection } from 'react-dropzone';
 import { useDropzone } from 'react-dropzone';
@@ -14,19 +12,10 @@ const accept: Accept = {
   'image/jpeg': ['.jpg', '.jpeg', '.png'],
 };
 
-const selectPostUploadAction = createMemoizedSelector(activeTabNameSelector, (activeTabName) => {
-  let postUploadAction: PostUploadAction = { type: 'TOAST' };
-
-  if (activeTabName === 'canvas') {
-    postUploadAction = { type: 'SET_CANVAS_INITIAL_IMAGE' };
-  }
-
-  return postUploadAction;
-});
+const postUploadAction: PostUploadAction = { type: 'TOAST' };
 
 export const useFullscreenDropzone = () => {
   const { t } = useTranslation();
-  const postUploadAction = useAppSelector(selectPostUploadAction);
   const autoAddBoardId = useAppSelector((s) => s.gallery.autoAddBoardId);
   const [isHandlingUpload, setIsHandlingUpload] = useState<boolean>(false);
 
@@ -56,7 +45,7 @@ export const useFullscreenDropzone = () => {
         board_id: autoAddBoardId === 'none' ? undefined : autoAddBoardId,
       });
     },
-    [autoAddBoardId, postUploadAction, uploadImage]
+    [autoAddBoardId, uploadImage]
   );
 
   const onDrop = useCallback(
