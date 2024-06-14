@@ -32,7 +32,6 @@ import { RiBox2Line, RiInputMethodLine, RiPlayList2Fill } from 'react-icons/ri';
 import type { ImperativePanelGroupHandle } from 'react-resizable-panels';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 
-import ParametersPanel from './ParametersPanel';
 import ResizeHandle from './tabs/ResizeHandle';
 
 type TabData = {
@@ -286,10 +285,8 @@ const ParametersPanelComponent = memo(() => {
 
   if (activeTabName === 'workflows') {
     return <NodeEditorPanelGroup />;
-  }
-  if (activeTabName === 'generation') {
+  } else {
     return <ParametersPanelTextToImage />;
   }
-  return <ParametersPanel />;
 });
 ParametersPanelComponent.displayName = 'ParametersPanelComponent';
