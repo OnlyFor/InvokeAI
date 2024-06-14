@@ -44,8 +44,8 @@ const createSelector = (templates: Templates) =>
     ],
     (controlAdapters, generation, system, nodes, workflowSettings, dynamicPrompts, controlLayers, activeTabName) => {
       const { model } = generation;
-      const { size } = controlLayers.present;
-      const { positivePrompt } = controlLayers.present;
+      const { size } = canvasV2;
+      const { positivePrompt } = canvasV2;
 
       const { isConnected } = system;
 
@@ -111,7 +111,7 @@ const createSelector = (templates: Templates) =>
 
         if (activeTabName === 'generation') {
           // Handling for generation tab
-          controlLayers.present.layers
+          canvasV2.layers
             .filter((l) => l.isEnabled)
             .forEach((l, i) => {
               const layerLiteral = i18n.t('controlLayers.layers_one');
