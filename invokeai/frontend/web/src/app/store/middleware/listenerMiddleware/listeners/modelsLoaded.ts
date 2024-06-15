@@ -9,7 +9,7 @@ import {
 import { heightChanged, widthChanged } from 'features/controlLayers/store/canvasV2Slice';
 import { loraRemoved } from 'features/lora/store/loraSlice';
 import { calculateNewSize } from 'features/parameters/components/ImageSize/calculateNewSize';
-import { modelChanged, vaeSelected } from 'features/parameters/store/generationSlice';
+import { modelChanged, vaeSelected } from 'features/canvas/store/canvasSlice';
 import { zParameterModel, zParameterVAEModel } from 'features/parameters/types/parameterSchemas';
 import { getIsSizeOptimal, getOptimalDimension } from 'features/parameters/util/optimalDimension';
 import { refinerModelChanged } from 'features/sdxl/store/sdxlSlice';
@@ -48,7 +48,7 @@ type ModelHandler = (
 ) => undefined;
 
 const handleMainModels: ModelHandler = (models, state, dispatch, log) => {
-  const currentModel = state.generation.model;
+  const currentModel = state.canvasV2.params.model;
   const mainModels = models.filter(isNonRefinerMainModelConfig);
   if (mainModels.length === 0) {
     // No models loaded at all
@@ -101,7 +101,7 @@ const handleMainModels: ModelHandler = (models, state, dispatch, log) => {
 };
 
 const handleRefinerModels: ModelHandler = (models, state, dispatch, _log) => {
-  const currentRefinerModel = state.sdxl.refinerModel;
+  const currentRefinerModel = state.canvasV2.params.refinerModel;
   const refinerModels = models.filter(isRefinerMainModelModelConfig);
   if (models.length === 0) {
     // No models loaded at all
@@ -120,7 +120,7 @@ const handleRefinerModels: ModelHandler = (models, state, dispatch, _log) => {
 };
 
 const handleVAEModels: ModelHandler = (models, state, dispatch, log) => {
-  const currentVae = state.generation.vae;
+  const currentVae = state.canvasV2.params.vae;
 
   if (currentVae === null) {
     // null is a valid VAE! it means "use the default with the main model"

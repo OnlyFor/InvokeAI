@@ -9,7 +9,7 @@ import ParamSeamlessXAxis from 'features/parameters/components/Seamless/ParamSea
 import ParamSeamlessYAxis from 'features/parameters/components/Seamless/ParamSeamlessYAxis';
 import ParamVAEModelSelect from 'features/parameters/components/VAEModel/ParamVAEModelSelect';
 import ParamVAEPrecision from 'features/parameters/components/VAEModel/ParamVAEPrecision';
-import { selectGenerationSlice } from 'features/parameters/store/generationSlice';
+import { selectGenerationSlice } from 'features/canvas/store/canvasSlice';
 import { useStandaloneAccordionToggle } from 'features/settingsAccordions/hooks/useStandaloneAccordionToggle';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +24,7 @@ const formLabelProps2: FormLabelProps = {
 };
 
 export const AdvancedSettingsAccordion = memo(() => {
-  const vaeKey = useAppSelector((state) => state.generation.vae?.key);
+  const vaeKey = useAppSelector((state) => state.canvasV2.params.vae?.key);
   const { currentData: vaeConfig } = useGetModelConfigQuery(vaeKey ?? skipToken);
   const selectBadges = useMemo(
     () =>

@@ -9,7 +9,6 @@ import { $templates, selectNodesSlice } from 'features/nodes/store/nodesSlice';
 import type { Templates } from 'features/nodes/store/types';
 import { selectWorkflowSettingsSlice } from 'features/nodes/store/workflowSettingsSlice';
 import { isInvocationNode } from 'features/nodes/types/invocation';
-import { selectGenerationSlice } from 'features/parameters/store/generationSlice';
 import { selectSystemSlice } from 'features/system/store/systemSlice';
 import { activeTabNameSelector } from 'features/ui/store/uiSelectors';
 import i18n from 'i18next';
@@ -28,7 +27,6 @@ const LAYER_TYPE_TO_TKEY: Record<CanvasEntity['type'], string> = {
 const createSelector = (templates: Templates) =>
   createMemoizedSelector(
     [
-      selectGenerationSlice,
       selectSystemSlice,
       selectNodesSlice,
       selectWorkflowSettingsSlice,
@@ -36,9 +34,9 @@ const createSelector = (templates: Templates) =>
       selectCanvasV2Slice,
       activeTabNameSelector,
     ],
-    (generation, system, nodes, workflowSettings, dynamicPrompts, canvasV2, activeTabName) => {
-      const { model, positivePrompt } = generation;
+    (system, nodes, workflowSettings, dynamicPrompts, canvasV2, activeTabName) => {
       const { bbox } = canvasV2;
+      const { model, positivePrompt } = canvasV2.params;
 
       const { isConnected } = system;
 

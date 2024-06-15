@@ -12,7 +12,7 @@ import { useImageActions } from 'features/gallery/hooks/useImageActions';
 import { sentImageToCanvas, sentImageToImg2Img } from 'features/gallery/store/actions';
 import { imageToCompareChanged } from 'features/gallery/store/gallerySlice';
 import { $templates } from 'features/nodes/store/nodesSlice';
-import { selectOptimalDimension } from 'features/parameters/store/generationSlice';
+import { selectOptimalDimension } from 'features/controlLayers/store/selectors';
 import { useFeatureStatus } from 'features/system/hooks/useFeatureStatus';
 import { toast } from 'features/toast/toast';
 import { setActiveTab } from 'features/ui/store/uiSlice';
