@@ -1,7 +1,6 @@
 import { logger } from 'app/logging/logger';
 import type { AppStartListening } from 'app/store/middleware/listenerMiddleware';
 import type { AppDispatch, RootState } from 'app/store/store';
-import { resetCanvas } from 'features/canvas/store/canvasSlice';
 import {
   caImageChanged,
   caProcessedImageChanged,
@@ -94,11 +93,6 @@ export const addRequestedSingleImageDeletionListener = (startAppListening: AppSt
       dispatch(isModalOpenChanged(false));
       const state = getState();
 
-      // We need to reset the features where the image is in use - none of these work if their image(s) don't exist
-      if (imageUsage.isLayerImage) {
-        dispatch(resetCanvas());
-      }
-
       imageDTOs.forEach((imageDTO) => {
         deleteNodesImages(state, dispatch, imageDTO);
         deleteControlAdapterImages(state, dispatch, imageDTO);
@@ -161,10 +155,6 @@ export const addRequestedSingleImageDeletionListener = (startAppListening: AppSt
         dispatch(isModalOpenChanged(false));
 
         // We need to reset the features where the image is in use - none of these work if their image(s) don't exist
-
-        if (imagesUsage.some((i) => i.isLayerImage)) {
-          dispatch(resetCanvas());
-        }
 
         imageDTOs.forEach((imageDTO) => {
           deleteNodesImages(state, dispatch, imageDTO);
