@@ -78,7 +78,7 @@ export type AppConfig = {
   sd: {
     defaultModel?: string;
     disabledControlNetModels: string[];
-    disabledControlNetProcessors: ProcessorTypeV2;
+    disabledControlNetProcessors: ProcessorTypeV2[];
     // Core parameters
     iterations: NumericalParameterConfig;
     width: NumericalParameterConfig; // initial value comes from model
