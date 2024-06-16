@@ -4,22 +4,17 @@ import { $customStarUI } from 'app/store/nanostores/customStarUI';
 import { useAppDispatch, useAppSelector } from 'app/store/storeHooks';
 import { useCopyImageToClipboard } from 'common/hooks/useCopyImageToClipboard';
 import { useDownloadImage } from 'common/hooks/useDownloadImage';
-import { setInitialCanvasImage } from 'features/canvas/store/canvasSlice';
 import { imagesToChangeSelected, isModalOpenChanged } from 'features/changeBoardModal/store/slice';
-import { iiLayerAdded } from 'features/controlLayers/store/canvasV2Slice';
-import { selectOptimalDimension } from 'features/controlLayers/store/selectors';
 import { imagesToDeleteSelected } from 'features/deleteImageModal/store/slice';
 import { useImageActions } from 'features/gallery/hooks/useImageActions';
 import { sentImageToCanvas, sentImageToImg2Img } from 'features/gallery/store/actions';
 import { imageToCompareChanged } from 'features/gallery/store/gallerySlice';
 import { $templates } from 'features/nodes/store/nodesSlice';
-import { useFeatureStatus } from 'features/system/hooks/useFeatureStatus';
 import { toast } from 'features/toast/toast';
 import { setActiveTab } from 'features/ui/store/uiSlice';
 import { useGetAndLoadEmbeddedWorkflow } from 'features/workflowLibrary/hooks/useGetAndLoadEmbeddedWorkflow';
 import { size } from 'lodash-es';
 import { memo, useCallback } from 'react';
-import { flushSync } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import {
   PiArrowsCounterClockwiseBold,
@@ -45,11 +40,9 @@ type SingleSelectionMenuItemsProps = {
 
 const SingleSelectionMenuItems = (props: SingleSelectionMenuItemsProps) => {
   const { imageDTO } = props;
-  const optimalDimension = useAppSelector(selectOptimalDimension);
   const maySelectForCompare = useAppSelector((s) => s.gallery.imageToCompare?.image_name !== imageDTO.image_name);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const isCanvasEnabled = useFeatureStatus('canvas');
   const customStarUi = useStore($customStarUI);
   const { downloadImage } = useDownloadImage();
   const templates = useStore($templates);
@@ -76,24 +69,21 @@ const SingleSelectionMenuItems = (props: SingleSelectionMenuItemsProps) => {
   }, [dispatch, imageDTO]);
 
   const handleSendToImageToImage = useCallback(() => {
+    // TODO(psyche): restore send to img2img functionality
     dispatch(sentImageToImg2Img());
-    dispatch(iiLayerAdded(imageDTO));
     dispatch(setActiveTab('generation'));
-  }, [dispatch, imageDTO]);
+  }, [dispatch]);
 
   const handleSendToCanvas = useCallback(() => {
+    // TODO(psyche): restore send to canvas functionality
     dispatch(sentImageToCanvas());
-    flushSync(() => {
-      dispatch(setActiveTab('canvas'));
-    });
-    dispatch(setInitialCanvasImage(imageDTO, optimalDimension));
-
+    dispatch(setActiveTab('generation'));
     toast({
       id: 'SENT_TO_CANVAS',
       title: t('toast.sentToUnifiedCanvas'),
       status: 'success',
     });
-  }, [dispatch, imageDTO, t, optimalDimension]);
+  }, [dispatch, t]);
 
   const handleChangeBoard = useCallback(() => {
     dispatch(imagesToChangeSelected([imageDTO]));
@@ -180,11 +170,9 @@ const SingleSelectionMenuItems = (props: SingleSelectionMenuItemsProps) => {
       <MenuItem icon={<PiShareFatBold />} onClickCapture={handleSendToImageToImage} id="send-to-img2img">
         {t('parameters.sendToImg2Img')}
       </MenuItem>
-      {isCanvasEnabled && (
-        <MenuItem icon={<PiShareFatBold />} onClickCapture={handleSendToCanvas} id="send-to-canvas">
-          {t('parameters.sendToUnifiedCanvas')}
-        </MenuItem>
-      )}
+      <MenuItem icon={<PiShareFatBold />} onClickCapture={handleSendToCanvas} id="send-to-canvas">
+        {t('parameters.sendToUnifiedCanvas')}
+      </MenuItem>
       <MenuDivider />
       <MenuItem icon={<PiFoldersBold />} onClickCapture={handleChangeBoard}>
         {t('boards.changeBoard')}
