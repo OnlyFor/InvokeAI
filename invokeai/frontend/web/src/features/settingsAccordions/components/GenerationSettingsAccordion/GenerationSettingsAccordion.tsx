@@ -3,9 +3,9 @@ import { Box, Expander, Flex, FormControlGroup, StandaloneAccordion } from '@inv
 import { EMPTY_ARRAY } from 'app/store/constants';
 import { createMemoizedSelector } from 'app/store/createMemoizedSelector';
 import { useAppSelector } from 'app/store/storeHooks';
+import { selectCanvasV2Slice } from 'features/controlLayers/store/canvasV2Slice';
 import { LoRAList } from 'features/lora/components/LoRAList';
 import LoRASelect from 'features/lora/components/LoRASelect';
-import { selectLoraSlice } from 'features/lora/store/loraSlice';
 import ParamCFGScale from 'features/parameters/components/Core/ParamCFGScale';
 import ParamScheduler from 'features/parameters/components/Core/ParamScheduler';
 import ParamSteps from 'features/parameters/components/Core/ParamSteps';
@@ -14,7 +14,6 @@ import ParamMainModelSelect from 'features/parameters/components/MainModel/Param
 import { UseDefaultSettingsButton } from 'features/parameters/components/MainModel/UseDefaultSettingsButton';
 import { useExpanderToggle } from 'features/settingsAccordions/hooks/useExpanderToggle';
 import { useStandaloneAccordionToggle } from 'features/settingsAccordions/hooks/useStandaloneAccordionToggle';
-import { filter } from 'lodash-es';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelectedModelConfig } from 'services/api/hooks/useSelectedModelConfig';
@@ -28,8 +27,8 @@ export const GenerationSettingsAccordion = memo(() => {
   const modelConfig = useSelectedModelConfig();
   const selectBadges = useMemo(
     () =>
-      createMemoizedSelector(selectLoraSlice, (lora) => {
-        const enabledLoRAsCount = filter(lora.loras, (l) => !!l.isEnabled).length;
+      createMemoizedSelector(selectCanvasV2Slice, (canvasV2) => {
+        const enabledLoRAsCount = canvasV2.loras.filter((l) => l.isEnabled).length;
         const loraTabBadges = enabledLoRAsCount ? [`${enabledLoRAsCount} ${t('models.concepts')}`] : EMPTY_ARRAY;
         const accordionBadges = modelConfig ? [modelConfig.name, modelConfig.base] : EMPTY_ARRAY;
         return { loraTabBadges, accordionBadges };

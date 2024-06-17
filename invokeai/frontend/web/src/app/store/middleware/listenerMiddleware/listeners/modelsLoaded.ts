@@ -6,17 +6,16 @@ import {
   caModelChanged,
   heightChanged,
   ipaModelChanged,
+  loraDeleted,
   modelChanged,
   refinerModelChanged,
   rgIPAdapterModelChanged,
   vaeSelected,
   widthChanged,
 } from 'features/controlLayers/store/canvasV2Slice';
-import { loraRemoved } from 'features/lora/store/loraSlice';
 import { calculateNewSize } from 'features/parameters/components/ImageSize/calculateNewSize';
 import { zParameterModel, zParameterVAEModel } from 'features/parameters/types/parameterSchemas';
 import { getIsSizeOptimal, getOptimalDimension } from 'features/parameters/util/optimalDimension';
-import { forEach } from 'lodash-es';
 import type { Logger } from 'roarr';
 import { modelConfigsAdapterSelectors, modelsApi } from 'services/api/endpoints/models';
 import type { AnyModelConfig } from 'services/api/types';
@@ -158,15 +157,13 @@ const handleVAEModels: ModelHandler = (models, state, dispatch, log) => {
 };
 
 const handleLoRAModels: ModelHandler = (models, state, dispatch, _log) => {
-  const loras = state.lora.loras;
   const loraModels = models.filter(isLoRAModelConfig);
-
-  forEach(loras, (lora, id) => {
+  state.canvasV2.loras.forEach((lora) => {
     const isLoRAAvailable = loraModels.some((m) => m.key === lora.model.key);
     if (isLoRAAvailable) {
       return;
     }
-    dispatch(loraRemoved(id));
+    dispatch(loraDeleted({ id: lora.id }));
   });
 };
 
