@@ -4,7 +4,6 @@ from invokeai.app.services.config.config_default import InvokeAIAppConfig
 from invokeai.app.services.image_files.image_files_base import ImageFileStorageBase
 from invokeai.app.services.shared.sqlite.sqlite_database import SqliteDatabase
 from invokeai.app.services.shared.sqlite_migrator.migrations.migration_1 import build_migration_1
-from invokeai.app.services.shared.sqlite_migrator.migrations.migration_12 import build_migration_12
 from invokeai.app.services.shared.sqlite_migrator.migrations.migration_2 import build_migration_2
 from invokeai.app.services.shared.sqlite_migrator.migrations.migration_3 import build_migration_3
 from invokeai.app.services.shared.sqlite_migrator.migrations.migration_4 import build_migration_4
@@ -15,6 +14,7 @@ from invokeai.app.services.shared.sqlite_migrator.migrations.migration_8 import 
 from invokeai.app.services.shared.sqlite_migrator.migrations.migration_9 import build_migration_9
 from invokeai.app.services.shared.sqlite_migrator.migrations.migration_10 import build_migration_10
 from invokeai.app.services.shared.sqlite_migrator.migrations.migration_11 import build_migration_11
+from invokeai.app.services.shared.sqlite_migrator.migrations.migration_12 import build_migration_12
 from invokeai.app.services.shared.sqlite_migrator.sqlite_migrator_impl import SqliteMigrator
 
 
