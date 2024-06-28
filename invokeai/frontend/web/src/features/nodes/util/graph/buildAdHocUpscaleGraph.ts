@@ -1,8 +1,8 @@
 import type { RootState } from 'app/store/store';
+import type { GraphType } from 'features/nodes/util/graph/generation/Graph';
+import { Graph } from 'features/nodes/util/graph/generation/Graph';
 import { getBoardField } from 'features/nodes/util/graph/graphBuilderUtils';
-import type { Graph, Invocation, NonNullableGraph } from 'services/api/types';
 
-import { addCoreMetadataNode, upsertMetadata } from './canvas/metadata';
 import { ESRGAN } from './constants';
 
 type Arg = {
@@ -10,30 +10,22 @@ type Arg = {
   state: RootState;
 };
 
-export const buildAdHocUpscaleGraph = ({ image_name, state }: Arg): Graph => {
+export const buildAdHocUpscaleGraph = ({ image_name, state }: Arg): GraphType => {
   const { esrganModelName } = state.postprocessing;
 
-  const realesrganNode: Invocation<'esrgan'> = {
+  const g = new Graph('adhoc-esrgan-graph');
+  g.addNode({
     id: ESRGAN,
     type: 'esrgan',
     image: { image_name },
     model_name: esrganModelName,
     is_intermediate: false,
     board: getBoardField(state),
-  };
+  });
 
-  const graph: NonNullableGraph = {
-    id: `adhoc-esrgan-graph`,
-    nodes: {
-      [ESRGAN]: realesrganNode,
-    },
-    edges: [],
-  };
-
-  addCoreMetadataNode(graph, {}, ESRGAN);
-  upsertMetadata(graph, {
+  g.upsertMetadata({
     esrgan_model: esrganModelName,
   });
 
-  return graph;
+  return g.getGraph();
 };
