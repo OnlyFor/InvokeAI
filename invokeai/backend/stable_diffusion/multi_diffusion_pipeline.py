@@ -61,6 +61,7 @@ class MultiDiffusionPipeline(StableDiffusionGeneratorPipeline):
             # full noise. Investigate the history of why this got commented out.
             # latents = noise * self.scheduler.init_noise_sigma # it's like in t2l according to diffusers
             latents = self.scheduler.add_noise(latents, noise, batched_init_timestep)
+            assert isinstance(latents, torch.Tensor)  # For static type checking.
 
         # TODO(ryand): Look into the implications of passing in latents here that are larger than they will be after
         # cropping into regions.
@@ -133,8 +134,31 @@ class MultiDiffusionPipeline(StableDiffusionGeneratorPipeline):
                 merged_latents[:, :, region_height_slice, region_width_slice] += step_output.prev_sample[
                     :, :, top_adjustment:, left_adjustment:
                 ]
-                # For now, we treat every region as having the same weight.
-                merged_latents_weights[:, :, region_height_slice, region_width_slice] += 1.0
+
+                # Build a region_weight matrix that applies gradient blending to the top and left edges of the region.
+                _, _, region_height, region_width = step_output.prev_sample.shape
+                region_weight = torch.ones(
+                    (1, 1, region_height - top_adjustment, region_width - left_adjustment),
+                    dtype=latents.dtype,
+                    device=latents.device,
+                )
+                left_overlap = region.overlap.left - left_adjustment
+                if left_overlap > 0:
+                    left_grad = torch.linspace(0, 1, left_overlap, device=latents.device, dtype=latents.dtype).view(
+                        (1, 1, 1, -1)
+                    )
+                    region_weight[:, :, :, :left_overlap] *= left_grad
+                top_overlap = region.overlap.top - top_adjustment
+                if top_overlap > 0:
+                    top_grad = torch.linspace(0, 1, top_overlap, device=latents.device, dtype=latents.dtype).view(
+                        (1, 1, -1, 1)
+                    )
+                    region_weight[:, :, :top_overlap, :] *= top_grad
+
+                merged_latents[:, :, region_height_slice, region_width_slice] += (
+                    step_output.prev_sample[:, :, top_adjustment:, left_adjustment:] * region_weight
+                )
+                merged_latents_weights[:, :, region_height_slice, region_width_slice] += region_weight
 
                 pred_orig_sample = getattr(step_output, "pred_original_sample", None)
                 if pred_orig_sample is not None:
