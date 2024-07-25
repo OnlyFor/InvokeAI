@@ -91,7 +91,7 @@ const Content = ({ data, feature }: ContentProps) => {
 
   return (
     <PopoverContent w={96}>
-      <PopoverCloseButton />
+      <PopoverCloseButton top={2} />
       <PopoverBody>
         <Flex gap={2} flexDirection="column" alignItems="flex-start">
           {heading && (
