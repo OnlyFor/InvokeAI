@@ -1,4 +1,5 @@
 import { Button, ButtonGroup, Flex } from '@invoke-ai/ui-library';
+import { useAppSelector } from 'app/store/storeHooks';
 import {
   useAddControlLayer,
   useAddInpaintMask,
@@ -6,11 +7,10 @@ import {
   useAddRasterLayer,
   useAddRegionalGuidance,
 } from 'features/controlLayers/hooks/addLayerHooks';
+import { selectIsFLUX } from 'features/controlLayers/store/paramsSlice';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PiPlusBold } from 'react-icons/pi';
-import { useAppSelector } from '../../../app/store/storeHooks';
-import { selectIsFLUX } from '../store/paramsSlice';
 
 export const CanvasAddEntityButtons = memo(() => {
   const { t } = useTranslation();
