@@ -108,12 +108,12 @@ export const buildOnInvocationComplete = (
 
     const imageDTO = await getResultImageDTO(data);
 
-    if (imageDTO) {
+    if (imageDTO && !imageDTO.is_intermediate) {
       addImageToGallery(imageDTO);
     }
   };
 
-  const handleOriginCanvas = async (data: S['InvocationCompleteEvent']) => {
+  const handleOriginGeneration = async (data: S['InvocationCompleteEvent']) => {
     const imageDTO = await getResultImageDTO(data);
 
     if (!imageDTO) {
@@ -128,19 +128,19 @@ export const buildOnInvocationComplete = (
         } else if (data.result.type === 'image_output') {
           dispatch(stagingAreaImageStaged({ stagingAreaImage: { imageDTO, offsetX: 0, offsetY: 0 } }));
         }
+        addImageToGallery(imageDTO);
       }
-    } else {
+    } else if (!imageDTO.is_intermediate) {
       // session.mode === 'generate'
       setLastCanvasProgressEvent(null);
+      addImageToGallery(imageDTO);
     }
-
-    addImageToGallery(imageDTO);
   };
 
   const handleOriginOther = async (data: S['InvocationCompleteEvent']) => {
     const imageDTO = await getResultImageDTO(data);
 
-    if (imageDTO) {
+    if (imageDTO && !imageDTO.is_intermediate) {
       addImageToGallery(imageDTO);
     }
   };
@@ -155,7 +155,7 @@ export const buildOnInvocationComplete = (
     if (data.origin === 'workflows') {
       await handleOriginWorkflows(data);
     } else if (data.origin === 'generation') {
-      await handleOriginCanvas(data);
+      await handleOriginGeneration(data);
     } else {
       await handleOriginOther(data);
     }
