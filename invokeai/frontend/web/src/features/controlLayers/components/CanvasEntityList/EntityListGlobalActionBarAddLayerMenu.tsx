@@ -9,6 +9,8 @@ import {
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PiPlusBold } from 'react-icons/pi';
+import { useAppSelector } from '../../../../app/store/storeHooks';
+import { selectIsFLUX } from '../../store/paramsSlice';
 
 export const EntityListGlobalActionBarAddLayerMenu = memo(() => {
   const { t } = useTranslation();
@@ -17,6 +19,7 @@ export const EntityListGlobalActionBarAddLayerMenu = memo(() => {
   const addRasterLayer = useAddRasterLayer();
   const addControlLayer = useAddControlLayer();
   const addIPAdapter = useAddIPAdapter();
+  const isFLUX = useAppSelector(selectIsFLUX);
 
   return (
     <Menu>
@@ -34,13 +37,13 @@ export const EntityListGlobalActionBarAddLayerMenu = memo(() => {
         <MenuItem icon={<PiPlusBold />} onClick={addInpaintMask}>
           {t('controlLayers.inpaintMask')}
         </MenuItem>
-        <MenuItem icon={<PiPlusBold />} onClick={addRegionalGuidance}>
+        <MenuItem icon={<PiPlusBold />} onClick={addRegionalGuidance} isDisabled={isFLUX}>
           {t('controlLayers.regionalGuidance')}
         </MenuItem>
         <MenuItem icon={<PiPlusBold />} onClick={addRasterLayer}>
           {t('controlLayers.rasterLayer')}
         </MenuItem>
-        <MenuItem icon={<PiPlusBold />} onClick={addControlLayer}>
+        <MenuItem icon={<PiPlusBold />} onClick={addControlLayer} isDisabled={isFLUX}>
           {t('controlLayers.controlLayer')}
         </MenuItem>
         <MenuItem icon={<PiPlusBold />} onClick={addIPAdapter}>

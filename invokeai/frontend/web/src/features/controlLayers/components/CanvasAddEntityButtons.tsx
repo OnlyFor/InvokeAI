@@ -9,6 +9,8 @@ import {
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PiPlusBold } from 'react-icons/pi';
+import { useAppSelector } from '../../../app/store/storeHooks';
+import { selectIsFLUX } from '../store/paramsSlice';
 
 export const CanvasAddEntityButtons = memo(() => {
   const { t } = useTranslation();
@@ -17,6 +19,7 @@ export const CanvasAddEntityButtons = memo(() => {
   const addRasterLayer = useAddRasterLayer();
   const addControlLayer = useAddControlLayer();
   const addIPAdapter = useAddIPAdapter();
+  const isFLUX = useAppSelector(selectIsFLUX);
 
   return (
     <Flex flexDir="column" w="full" h="full" alignItems="center">
@@ -24,16 +27,34 @@ export const CanvasAddEntityButtons = memo(() => {
         <Button variant="ghost" justifyContent="flex-start" leftIcon={<PiPlusBold />} onClick={addInpaintMask}>
           {t('controlLayers.inpaintMask')}
         </Button>
-        <Button variant="ghost" justifyContent="flex-start" leftIcon={<PiPlusBold />} onClick={addRegionalGuidance}>
+        <Button
+          variant="ghost"
+          justifyContent="flex-start"
+          leftIcon={<PiPlusBold />}
+          onClick={addRegionalGuidance}
+          isDisabled={isFLUX}
+        >
           {t('controlLayers.regionalGuidance')}
         </Button>
         <Button variant="ghost" justifyContent="flex-start" leftIcon={<PiPlusBold />} onClick={addRasterLayer}>
           {t('controlLayers.rasterLayer')}
         </Button>
-        <Button variant="ghost" justifyContent="flex-start" leftIcon={<PiPlusBold />} onClick={addControlLayer}>
+        <Button
+          variant="ghost"
+          justifyContent="flex-start"
+          leftIcon={<PiPlusBold />}
+          onClick={addControlLayer}
+          isDisabled={isFLUX}
+        >
           {t('controlLayers.controlLayer')}
         </Button>
-        <Button variant="ghost" justifyContent="flex-start" leftIcon={<PiPlusBold />} onClick={addIPAdapter}>
+        <Button
+          variant="ghost"
+          justifyContent="flex-start"
+          leftIcon={<PiPlusBold />}
+          onClick={addIPAdapter}
+          isDisabled={isFLUX}
+        >
           {t('controlLayers.globalIPAdapter')}
         </Button>
       </ButtonGroup>
